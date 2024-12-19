@@ -1,0 +1,32 @@
+<script>
+    
+    
+    // Disable right-click
+document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+// Disable F12, Ctrl+Shift+I, Ctrl+Shift+C, and Ctrl+Shift+J
+document.addEventListener("keydown", (e) => {
+    if (
+        e.key === "F12" || 
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "C" || e.key === "J")) || 
+        (e.ctrlKey && e.key === "U") // Disable Ctrl+U (View Source)
+    ) {
+        e.preventDefault();
+    }
+});
+
+// Prevent opening DevTools using right-click or shortcuts
+let checkDevTools = () => {
+    setTimeout(() => {
+        if (window.outerHeight - window.innerHeight > 100 || window.outerWidth - window.innerWidth > 100) {
+            alert("Developer tools are disabled on this website.");
+            window.close(); // Close the window if possible
+        }
+        checkDevTools();
+    }, 500);
+};
+checkDevTools();
+
+    
+    
+    </script> 
